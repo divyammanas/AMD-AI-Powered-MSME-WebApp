@@ -1,0 +1,81 @@
+/* Ripple global effects */
+body {
+  background: #050507;
+  color: #f1f5f9;
+}
+
+/* Subtle grid overlay across the whole viewport */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Pink glow orb — top left */
+body::after {
+  content: '';
+  position: fixed;
+  top: -200px;
+  left: -200px;
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, rgba(64,83,143,0.18) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Cyan glow orb — bottom right */
+#root::after {
+  content: '';
+  position: fixed;
+  bottom: -200px;
+  right: -200px;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(90,67,134,0.14) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Ensure app content sits above overlays */
+#root > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Ripple glass card base */
+.glass {
+  background: rgba(255,255,255,0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.glass:hover {
+  border-color: rgba(255,255,255,0.13);
+}
+
+/* Gradient text utility */
+.gradient-text {
+  background: linear-gradient(135deg, #bfcbff 0%, #f1c0d9 52%, #9ee7b0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Pink glow on interactive elements */
+.glow-pink {
+  box-shadow: 0 0 40px rgba(115,132,210,0.22), 0 0 80px rgba(90,67,134,0.10);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(143,159,237,0.42); }
