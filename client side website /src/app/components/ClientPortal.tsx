@@ -159,16 +159,16 @@ export default function ClientPortal({ onBack }: Props) {
             <span style={{ fontFamily: "'Roboto Slab', serif", fontSize: 15, fontWeight: 600 }}>Subsidy<span style={{ color: '#aaa' }}>Setu</span> Business Portal</span>
           </div>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
+        <div className="hidden sm:flex" style={{ alignItems: 'center', gap: 20 }}>
           {['Find CA', 'Documents', 'Schemes'].map(link => (
-            <span key={link} className="nav-link" style={{ fontSize: 13, color: '#666' }}>{link}</span>
+            <span key={link} className="nav-link hidden sm:block" style={{ fontSize: 13, color: '#666' }}>{link}</span>
           ))}
           <div style={{ width: 32, height: 32, borderRadius: '50%', background: '#fff', color: '#000', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700 }}>B</div>
         </div>
       </header>
 
       {/* Hero */}
-      <div style={{ background: '#000', padding: '52px 48px 44px', borderBottom: '1px solid #1a1a1a', position: 'relative', overflow: 'hidden' }}>
+      <div className="px-6 md:px-12 py-12 md:py-14" style={{ background: '#000', borderBottom: '1px solid #1a1a1a', position: 'relative', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
         <div style={{ position: 'relative', zIndex: 1, maxWidth: 700, animation: 'fadeUp 0.6s ease-out' }}>
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'rgba(255,255,255,0.06)', border: '1px solid #2a2a2a', borderRadius: 20, padding: '4px 12px', marginBottom: 18 }}>
@@ -181,7 +181,7 @@ export default function ClientPortal({ onBack }: Props) {
           <p style={{ color: '#666', fontSize: 15, lineHeight: 1.65, maxWidth: 540, margin: 0 }}>
             Find a verified Chartered Accountant near you, upload your documents securely, and get your business the benefits it deserves under MSME schemes.
           </p>
-          <div style={{ display: 'flex', gap: 24, marginTop: 28 }}>
+          <div style={{ display: 'flex', gap: 24, marginTop: 28, flexWrap: 'wrap' }}>
             {[
               { icon: Users, label: '12,400+ CAs', sub: 'Verified nationwide' },
               { icon: Shield, label: 'AES-256', sub: 'Encrypted vault' },
@@ -201,7 +201,7 @@ export default function ClientPortal({ onBack }: Props) {
         </div>
       </div>
 
-      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '40px 40px 120px' }}>
+      <div className="px-6 md:px-10 py-10 md:py-16 mx-auto max-w-[1200px]">
         {/* ── CA SEARCH ── */}
         <section className="cp-card" style={{ background: '#0d0d0d', border: '1px solid #222', borderRadius: 14, padding: 32, marginBottom: 28 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 6 }}>
@@ -209,7 +209,7 @@ export default function ClientPortal({ onBack }: Props) {
             <h2 style={{ fontFamily: "'Roboto Slab', serif", fontSize: 20, fontWeight: 600, color: '#fff', margin: 0 }}>Search CA by Client ID</h2>
           </div>
           <p style={{ fontSize: 13, color: '#666', margin: '0 0 22px' }}>Enter the unique CA-IN identifier provided by your Chartered Accountant.</p>
-          <div style={{ display: 'flex', gap: 10 }}>
+          <div className="flex flex-col sm:flex-row gap-2.5">
             <div style={{ position: 'relative', flex: 1 }}>
               <Search size={15} color="#555" style={{ position: 'absolute', left: 14, top: '50%', transform: 'translateY(-50%)' }} />
               <input
@@ -240,8 +240,8 @@ export default function ClientPortal({ onBack }: Props) {
 
           {/* Result */}
           {searchResult && searchResult !== 'notfound' && (
-            <div style={{ marginTop: 20, padding: 20, background: '#050505', border: '1px solid #fff', borderRadius: 12, animation: 'fadeUp 0.4s ease-out' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 16 }}>
+            <div className="mt-5 p-5 bg-[#050505] border border-white rounded-xl animate-[fadeUp_0.4s_ease-out]">
+              <div className="flex flex-col sm:flex-row justify-between items-start gap-4">
                 <div style={{ display: 'flex', gap: 16, alignItems: 'flex-start' }}>
                   <div style={{ width: 48, height: 48, borderRadius: 10, background: '#fff', color: '#000', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                     <Building2 size={22} />
