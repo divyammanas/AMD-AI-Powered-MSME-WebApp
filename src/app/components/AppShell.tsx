@@ -2,7 +2,7 @@ import { useState } from "react";
 import {
   LayoutDashboard, Users, Sparkles, FileText, KanbanSquare,
   Receipt, Bell, Settings, Search, MessageSquare, Zap,
-  PanelLeft, ChevronRight,
+  PanelLeft, ChevronRight, Menu, X
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { NavContext, type Page } from "../lib/nav";
@@ -50,13 +50,16 @@ const EXPANDED  = 240;
 export function AppShell() {
   const [page, go]   = useState<Page>({ name: "overview" });
   const [open, setOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const activeName =
     page.name === "client-detail"
       ? "Clients"
       : (nav.find(n => n.key === page.name)?.label ?? "");
 
-  function navigate(p: Page) { go(p); setOpen(false); }
+  function navigate(p: Page) { go(p); setMobileMenuOpen(false); }
+
+  const isExpanded = mobileMenuOpen || open;
 
   return (
     <NavContext.Provider value={{ page, go }}>
@@ -64,20 +67,27 @@ export function AppShell() {
         className="dark min-h-screen flex"
         style={{ background: "#050507", color: "#f1f5f9" }}
       >
+        {/* Mobile Backdrop */}
+        {mobileMenuOpen && (
+          <div 
+            className="md:hidden fixed inset-0 z-40 bg-black/60 backdrop-blur-sm"
+            onClick={() => setMobileMenuOpen(false)}
+          />
+        )}
+
         {/* ── SIDEBAR ── */}
         <aside
+          className={`md:flex ${mobileMenuOpen ? 'flex fixed inset-y-0 left-0' : 'hidden'}`}
           style={{
-            width: open ? EXPANDED : COLLAPSED,
-            minWidth: open ? EXPANDED : COLLAPSED,
+            width: mobileMenuOpen ? EXPANDED : (open ? EXPANDED : COLLAPSED),
+            minWidth: mobileMenuOpen ? EXPANDED : (open ? EXPANDED : COLLAPSED),
             transition: "width 0.22s cubic-bezier(0.4,0,0.2,1), min-width 0.22s cubic-bezier(0.4,0,0.2,1)",
             background: "#090b0f",
             borderRight: "1px solid rgba(255,255,255,0.10)",
-            display: "flex",
             flexDirection: "column",
             overflow: "hidden",
             flexShrink: 0,
-            position: "relative",
-            zIndex: 20,
+            zIndex: 50,
           }}
         >
           {/* Logo + toggle row */}
@@ -108,7 +118,7 @@ export function AppShell() {
             </button>
 
             {/* Wordmark — only visible when expanded */}
-            {open && (
+            {isExpanded && (
               <div style={{ flex: 1, overflow: "hidden" }}>
                 <div style={{ color: "#fff", fontSize: 13, fontWeight: 700, letterSpacing: "-0.02em", whiteSpace: "nowrap" }}>
                   Subsidy<span style={{ color: '#888888' }}>Setu</span>
@@ -119,14 +129,20 @@ export function AppShell() {
 
             {/* Toggle */}
             <button
-              onClick={() => setOpen(v => !v)}
-              title={open ? "Collapse" : "Expand"}
+              onClick={() => {
+                if (mobileMenuOpen) {
+                  setMobileMenuOpen(false);
+                } else {
+                  setOpen(v => !v);
+                }
+              }}
+              title={isExpanded ? "Collapse" : "Expand"}
               style={{
                 height: 32, width: 32, minWidth: 32,
                 borderRadius: 8,
-                background: open ? "rgba(143,159,237,0.15)" : "transparent",
-                border: open ? "1px solid rgba(143,159,237,0.25)" : "1px solid transparent",
-                color: open ? "#ffc0da" : "#94a3b8",
+                background: isExpanded ? "rgba(143,159,237,0.15)" : "transparent",
+                border: isExpanded ? "1px solid rgba(143,159,237,0.25)" : "1px solid transparent",
+                color: isExpanded ? "#ffc0da" : "#94a3b8",
                 display: "flex", alignItems: "center", justifyContent: "center",
                 cursor: "pointer",
                 transition: "all 0.15s",
@@ -136,17 +152,17 @@ export function AppShell() {
                 (e.currentTarget as HTMLElement).style.color = "#fff";
               }}
               onMouseLeave={e => {
-                (e.currentTarget as HTMLElement).style.background = open ? "rgba(143,159,237,0.15)" : "transparent";
-                (e.currentTarget as HTMLElement).style.color = open ? "#ffc0da" : "#94a3b8";
+                (e.currentTarget as HTMLElement).style.background = isExpanded ? "rgba(143,159,237,0.15)" : "transparent";
+                (e.currentTarget as HTMLElement).style.color = isExpanded ? "#ffc0da" : "#94a3b8";
               }}
             >
-              <PanelLeft style={{ width: 15, height: 15 }} />
+              {mobileMenuOpen ? <X style={{ width: 15, height: 15 }} /> : <PanelLeft style={{ width: 15, height: 15 }} />}
             </button>
           </div>
 
           {/* Nav items */}
           <nav style={{ flex: 1, padding: "8px 6px", display: "flex", flexDirection: "column", gap: 2, overflowY: "auto", overflowX: "hidden" }}>
-            {!open && (
+            {!isExpanded && (
               <div style={{ height: 1, background: "rgba(255,255,255,0.07)", margin: "4px 6px 6px" }} />
             )}
             {nav.map(({ key, label, icon: Icon }) => {
@@ -155,15 +171,15 @@ export function AppShell() {
                 <button
                   key={key}
                   onClick={() => navigate({ name: key } as Page)}
-                  title={!open ? label : undefined}
+                  title={!isExpanded ? label : undefined}
                   style={{
                     height: 36,
                     width: "100%",
                     display: "flex",
                     alignItems: "center",
                     gap: 10,
-                    padding: open ? "0 10px" : "0",
-                    justifyContent: open ? "flex-start" : "center",
+                    padding: isExpanded ? "0 10px" : "0",
+                    justifyContent: isExpanded ? "flex-start" : "center",
                     borderRadius: 10,
                     cursor: "pointer",
                     border: active ? "1px solid rgba(143,159,237,0.22)" : "1px solid transparent",
@@ -199,13 +215,13 @@ export function AppShell() {
                     }} />
                   )}
                   <Icon style={{ width: 16, height: 16, flexShrink: 0 }} />
-                  {open && <span style={{ flex: 1 }}>{label}</span>}
+                  {isExpanded && <span style={{ flex: 1 }}>{label}</span>}
                   {key === "notifications" && (
                     <span style={{
                       width: 6, height: 6, borderRadius: "50%",
                       background: "#8f9fed", boxShadow: "0 0 5px #8f9fed",
                       flexShrink: 0,
-                      marginLeft: open ? "auto" : 0,
+                      marginLeft: isExpanded ? "auto" : 0,
                     }} />
                   )}
                 </button>
@@ -216,7 +232,7 @@ export function AppShell() {
           {/* User card */}
           <div style={{ padding: 8, borderTop: "1px solid rgba(255,255,255,0.07)", flexShrink: 0 }}>
             <div style={{
-              padding: open ? "10px 10px" : "6px",
+              padding: isExpanded ? "10px 10px" : "6px",
               borderRadius: 12,
               background: "rgba(255,255,255,0.04)",
               border: "1px solid rgba(255,255,255,0.07)",
@@ -235,7 +251,7 @@ export function AppShell() {
               }}>
                 PN
               </div>
-              {open && (
+              {isExpanded && (
                 <div style={{ minWidth: 0, flex: 1 }}>
                   <div style={{ fontSize: 12, color: "#e2e8f0", fontWeight: 500, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
                     Priya Nair, CA
@@ -243,7 +259,7 @@ export function AppShell() {
                   <div style={{ fontSize: 10, color: "#475569", whiteSpace: "nowrap" }}>Nair & Associates</div>
                 </div>
               )}
-              {open && (
+              {isExpanded && (
                 <span style={{
                   fontSize: 10, padding: "2px 8px", borderRadius: 99,
                   background: "rgba(143,159,237,0.15)", border: "1px solid rgba(143,159,237,0.25)",
@@ -268,8 +284,16 @@ export function AppShell() {
             borderBottom: "1px solid rgba(255,255,255,0.07)",
             flexShrink: 0,
           }}>
+            {/* Hamburger menu for mobile */}
+            <button 
+              className="md:hidden flex items-center justify-center text-[#94a3b8] hover:text-white mr-2"
+              onClick={() => setMobileMenuOpen(true)}
+            >
+              <Menu size={20} />
+            </button>
+
             {/* Breadcrumb */}
-            <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 13, whiteSpace: "nowrap" }}>
+            <div className="hidden sm:flex items-center gap-1.5 text-[13px] whitespace-nowrap">
               <span style={{ color: "#475569" }}>SubsidyDesk</span>
               <ChevronRight style={{ width: 13, height: 13, color: "#334155" }} />
               <span style={{ color: "#fff", fontWeight: 500 }}>{activeName}</span>
@@ -278,7 +302,7 @@ export function AppShell() {
             {/* Centred search */}
             <div style={{
               position: "absolute", left: "50%", transform: "translateX(-50%)",
-              width: "min(380px, 40vw)",
+              width: "min(320px, 35vw)",
             }}>
               <div style={{ position: "relative" }}>
                 <Search style={{

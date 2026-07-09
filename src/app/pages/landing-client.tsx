@@ -58,7 +58,7 @@ export function LandingClient({ onSignIn }: { onSignIn: (role: "ca" | "business"
       
       {/* Navbar */}
       <nav className="fixed top-0 w-full z-50 bg-[#080808]/90 backdrop-blur border-b border-[#222222]">
-        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <div className="w-6 h-6 rounded-sm overflow-hidden flex items-center justify-center">
               <img src="/logo.jpg" alt="Logo" className="w-full h-full object-cover" />
@@ -91,7 +91,7 @@ export function LandingClient({ onSignIn }: { onSignIn: (role: "ca" | "business"
               </button>
             </div>
             
-            <h1 className="text-5xl md:text-6xl font-bold leading-tight mb-6 tracking-tight">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 tracking-tight">
               <span className={view === "business" ? "text-[#888888]" : ""}>AI finds the subsidy.</span><br/>
               <span className={view === "business" ? "text-white" : "text-[#888888]"}>You hold the pen.</span>
             </h1>
