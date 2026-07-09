@@ -99,12 +99,12 @@ export function AppShell() {
               style={{
                 height: 32, width: 32, minWidth: 32,
                 borderRadius: 4,
-                background: "#fff",
+                overflow: "hidden",
                 display: "flex", alignItems: "center", justifyContent: "center",
                 cursor: "pointer", border: "none",
               }}
             >
-              <span style={{ color: "#000", fontWeight: 700, fontSize: 16 }}>S</span>
+              <img src="/logo.jpg" alt="Logo" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
             </button>
 
             {/* Wordmark — only visible when expanded */}

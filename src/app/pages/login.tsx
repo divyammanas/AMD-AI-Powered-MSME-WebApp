@@ -20,11 +20,11 @@ export function Login({ initialRole = "ca", onLogin }: { initialRole?: "ca" | "b
             style={{
               height: 48, width: 48,
               borderRadius: 14,
-              background: "#ffffff",
+              overflow: "hidden",
               display: "flex", alignItems: "center", justifyContent: "center",
             }}
           >
-            <Zap style={{ width: 24, height: 24, color: "#000000" }} />
+            <img src="/logo.jpg" alt="Logo" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
           </div>
           <div className="text-2xl font-bold tracking-tight">
             Welcome to Subsidy<span style={{ color: "#888888" }}>Setu</span>

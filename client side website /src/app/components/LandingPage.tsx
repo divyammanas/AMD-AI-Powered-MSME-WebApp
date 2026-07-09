@@ -36,8 +36,8 @@ export default function LandingPage({ onSelectMode }: Props) {
         {/* Header Section */}
         <div className="text-center mb-16 max-w-2xl animate-[fadeUp_0.6s_ease-out]">
           <div className="flex items-center justify-center gap-3 mb-6">
-            <div className="w-12 h-12 rounded-xl bg-[#fff] flex items-center justify-center shadow-[0_0_20px_rgba(255,255,255,0.1)]">
-              <Cpu className="w-6 h-6 text-[#000]" />
+            <div className="w-12 h-12 rounded-xl overflow-hidden flex items-center justify-center shadow-[0_0_20px_rgba(255,255,255,0.1)]">
+              <img src="/logo.jpg" alt="Logo" className="w-full h-full object-cover" />
             </div>
             <h1 className="font-['Roboto_Slab'] text-3xl font-bold tracking-tight text-[#fff]">
               Subsidy<span className="text-[#aaa]">Setu</span>

@@ -68,8 +68,8 @@ export default function App() {
           </button>
           <div style={{ width: 1, height: 24, background: '#222' }} />
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <div style={{ width: 28, height: 28, borderRadius: 6, background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <Cpu size={15} color="#000" />
+            <div style={{ width: 28, height: 28, borderRadius: 6, overflow: "hidden", display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <img src="/logo.jpg" alt="Logo" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
             </div>
             <span style={{ fontFamily: "'Roboto Slab', serif", fontSize: 15, fontWeight: 600 }}>Subsidy<span style={{ color: '#aaa' }}>Setu</span> Platform</span>
           </div>

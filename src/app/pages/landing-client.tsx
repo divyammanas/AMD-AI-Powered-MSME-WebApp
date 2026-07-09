@@ -60,8 +60,8 @@ export function LandingClient({ onSignIn }: { onSignIn: (role: "ca" | "business"
       <nav className="fixed top-0 w-full z-50 bg-[#080808]/90 backdrop-blur border-b border-[#222222]">
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="w-6 h-6 bg-white flex items-center justify-center rounded-sm">
-              <span className="text-black font-bold text-xs">S</span>
+            <div className="w-6 h-6 rounded-sm overflow-hidden flex items-center justify-center">
+              <img src="/logo.jpg" alt="Logo" className="w-full h-full object-cover" />
             </div>
             <span className="font-bold tracking-tight">Subsidy<span className="text-[#888888]">Setu</span></span>
           </div>
