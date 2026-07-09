@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import { Landing } from "./pages/landing";
+import { LandingClient } from "./pages/landing-client";
 import { Login } from "./pages/login";
 import { AppShell } from "./components/AppShell";
+import BusinessApp from "../../client side website /src/app/App";
 
 export default function App() {
   const [screen, setScreen] = useState<"landing" | "login" | "dashboard">(() => {
@@ -15,6 +16,8 @@ export default function App() {
     }
     return "landing";
   });
+
+  const [pendingRole, setPendingRole] = useState<"ca" | "business">("ca");
 
   useEffect(() => {
     if (screen === "landing") {
@@ -48,23 +51,32 @@ export default function App() {
     return () => window.removeEventListener("popstate", handlePopState);
   }, []);
 
-  const handleSignIn = () => {
+  const handleSignIn = (role: "ca" | "business") => {
+    setPendingRole(role);
     setScreen("login");
   };
 
   const handleLogin = (role: "ca" | "business") => {
     sessionStorage.setItem("authenticated", "true");
+    sessionStorage.setItem("role", role);
     setScreen("dashboard");
   };
 
   if (screen === "landing") {
-    return <Landing onSignIn={handleSignIn} />;
+    return <LandingClient onSignIn={handleSignIn} />;
   }
 
   if (screen === "login") {
-    return <Login onLogin={handleLogin} />;
+    return <Login initialRole={pendingRole} onLogin={handleLogin} />;
   }
 
-  return <AppShell />;
-}
+  if (screen === "dashboard") {
+    const role = sessionStorage.getItem("role") || "ca";
+    if (role === "business") {
+      return <BusinessApp />;
+    }
+    return <AppShell />;
+  }
 
+  return null;
+}
