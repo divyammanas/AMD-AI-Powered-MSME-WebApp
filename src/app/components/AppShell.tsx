@@ -95,24 +95,23 @@ export function AppShell() {
             {/* Logo mark */}
             <button
               onClick={() => navigate({ name: "overview" })}
-              title="SubsidyDesk"
+              title="SubsidySetu"
               style={{
                 height: 32, width: 32, minWidth: 32,
-                borderRadius: 10,
-                background: "linear-gradient(135deg,#8f9fed,#5a4386)",
-                boxShadow: "0 0 16px rgba(143,159,237,0.45)",
+                borderRadius: 4,
+                overflow: "hidden",
                 display: "flex", alignItems: "center", justifyContent: "center",
                 cursor: "pointer", border: "none",
               }}
             >
-              <Zap style={{ width: 15, height: 15, color: "#fff" }} />
+              <img src="/logo.jpg" alt="Logo" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
             </button>
 
             {/* Wordmark — only visible when expanded */}
             {open && (
               <div style={{ flex: 1, overflow: "hidden" }}>
                 <div style={{ color: "#fff", fontSize: 13, fontWeight: 700, letterSpacing: "-0.02em", whiteSpace: "nowrap" }}>
-                  SubsidyDesk
+                  Subsidy<span style={{ color: '#888888' }}>Setu</span>
                 </div>
                 <div style={{ color: "#475569", fontSize: 10, whiteSpace: "nowrap" }}>CA workspace · v1</div>
               </div>
