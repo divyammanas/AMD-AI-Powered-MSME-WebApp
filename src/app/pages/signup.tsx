@@ -14,6 +14,8 @@ export default function Signup({ onBack, onComplete }: Props) {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [formError, setFormError] = useState('');
   
   // CA specific
   const [caId, setCaId] = useState('');
@@ -41,6 +43,18 @@ export default function Signup({ onBack, onComplete }: Props) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    setFormError('');
+    
+    if (password !== confirmPassword) {
+      setFormError('Passwords do not match');
+      return;
+    }
+    
+    if (!/^\d{10}$/.test(phone)) {
+      setFormError('Phone number must be exactly 10 digits');
+      return;
+    }
+    
     if (parseInt(captchaAns) !== num1 + num2) {
       setCaptchaError(true);
       return;
@@ -181,7 +195,22 @@ export default function Signup({ onBack, onComplete }: Props) {
                     />
                   </div>
                 </div>
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-xs font-semibold text-[#888] uppercase tracking-wider pl-1">Confirm Password</label>
+                  <div className="relative">
+                    <Lock size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#555]" />
+                    <input 
+                      required value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)}
+                      type="password" placeholder="••••••••"
+                      className="w-full bg-[#050505] border border-[#2a2a2a] rounded-lg py-3 pl-10 pr-4 text-sm text-[#fff] placeholder:text-[#444] focus:outline-none focus:border-[#fff] transition-colors"
+                    />
+                  </div>
+                </div>
               </div>
+
+              {formError && (
+                <div className="text-[#ff3333] text-sm mt-1">{formError}</div>
+              )}
 
               {/* Dynamic Fields based on Role */}
               {role === 'business' && (
@@ -217,12 +246,12 @@ export default function Signup({ onBack, onComplete }: Props) {
               {role === 'ca' && (
                 <div className="p-5 bg-[#0a0a0a] border border-[#1a1a1a] rounded-xl flex flex-col gap-5 mt-2">
                   <div className="flex flex-col gap-1.5">
-                    <label className="text-xs font-semibold text-[#888] uppercase tracking-wider pl-1">CA Registration ID</label>
+                    <label className="text-xs font-semibold text-[#888] uppercase tracking-wider pl-1">ICAI Membership ID</label>
                     <div className="relative">
                       <FileText size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#555]" />
                       <input 
                         required value={caId} onChange={e => setCaId(e.target.value)}
-                        type="text" placeholder="CA-IN-XXXX"
+                        type="text" placeholder="XXXXXX"
                         className="w-full bg-[#050505] border border-[#222] rounded-lg py-3 pl-10 pr-4 text-sm text-[#fff] focus:outline-none focus:border-[#fff] transition-colors font-mono"
                       />
                     </div>

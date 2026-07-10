@@ -104,7 +104,7 @@ export function AppShell() {
           >
             {/* Logo mark */}
             <button
-              onClick={() => navigate({ name: "overview" })}
+              onClick={() => window.location.href = '/'}
               title="SubsidySetu"
               style={{
                 height: 32, width: 32, minWidth: 32,
