@@ -91,7 +91,7 @@ export default function App() {
             <LogOut size={14} /> Logout
           </button>
           <div style={{ width: 1, height: 24, background: '#222' }} />
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer' }} onClick={() => setMode('landing')}>
             <div style={{ width: 28, height: 28, borderRadius: 6, background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <Cpu size={15} color="#000" />
             </div>
