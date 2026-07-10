@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { LayoutDashboard, Bot, TrendingUp, BarChart3, Settings2, ShieldCheck, Truck, Cpu, ChevronLeft } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { LayoutDashboard, Bot, TrendingUp, BarChart3, Settings2, ShieldCheck, Truck, Cpu, LogOut } from 'lucide-react';
 import Dashboard from './components/Dashboard';
 import ChatBot from './components/ChatBot';
 import FinancialAnalysis from './components/FinancialAnalysis';
@@ -9,7 +9,6 @@ import ComplianceAssistant from './components/ComplianceAssistant';
 import SupplierManagement from './components/SupplierManagement';
 import LandingPage from './components/LandingPage';
 import ClientPortal from './components/ClientPortal';
-
 type AppMode = 'landing' | 'msme' | 'client';
 
 const navItems = [
@@ -23,12 +22,37 @@ const navItems = [
 ];
 
 export default function App() {
-  const [mode, setMode] = useState<AppMode>('landing');
+  const [mode, setModeState] = useState<AppMode>('landing');
   const [activeTab, setActiveTab] = useState('dashboard');
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  // Initialize mode from localStorage on mount
+  useEffect(() => {
+    const savedMode = localStorage.getItem('subsidySetuMode') as AppMode;
+    if (savedMode && ['msme', 'client'].includes(savedMode)) {
+      setModeState(savedMode);
+    }
+    setIsLoaded(true);
+  }, []);
+
+  const setMode = (newMode: AppMode) => {
+    setModeState(newMode);
+    // Persist login state if going to an app portal, clear it if returning to landing
+    if (newMode === 'msme' || newMode === 'client') {
+      localStorage.setItem('subsidySetuMode', newMode);
+    } else if (newMode === 'landing') {
+      localStorage.removeItem('subsidySetuMode');
+    }
+  };
+
+  // Prevent hydration mismatch/flash by waiting for localStorage check
+  if (!isLoaded) return <div style={{ background: '#080808', minHeight: '100vh' }} />;
 
   if (mode === 'landing') {
     return <LandingPage onSelectMode={(m) => setMode(m)} />;
   }
+
+
 
   if (mode === 'client') {
     return <ClientPortal onBack={() => setMode('landing')} />;
@@ -56,7 +80,7 @@ export default function App() {
         .cp-btn-ghost:hover { border-color: #fff !important; background: rgba(255,255,255,0.06) !important; }
       `}</style>
 
-      {/* Top nav - Matches ClientPortal exactly */}
+      {/* Top nav */}
       <header style={{ height: 60, background: '#000', borderBottom: '1px solid #1a1a1a', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 32px', position: 'sticky', top: 0, zIndex: 50 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
           <button
@@ -64,12 +88,12 @@ export default function App() {
             className="cp-btn-ghost"
             style={{ background: 'transparent', border: '1px solid #2a2a2a', borderRadius: 8, padding: '6px 12px', color: '#aaa', display: 'flex', alignItems: 'center', gap: 6, fontSize: 13 }}
           >
-            <ChevronLeft size={14} /> Home
+            <LogOut size={14} /> Logout
           </button>
           <div style={{ width: 1, height: 24, background: '#222' }} />
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <div style={{ width: 28, height: 28, borderRadius: 6, overflow: "hidden", display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <img src="/logo.jpg" alt="Logo" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+            <div style={{ width: 28, height: 28, borderRadius: 6, background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <Cpu size={15} color="#000" />
             </div>
             <span style={{ fontFamily: "'Roboto Slab', serif", fontSize: 15, fontWeight: 600 }}>Subsidy<span style={{ color: '#aaa' }}>Setu</span> Platform</span>
           </div>
@@ -81,7 +105,7 @@ export default function App() {
             style={{ background: 'transparent', border: '1px solid #2a2a2a', borderRadius: 8, padding: '6px 14px', color: '#aaa', fontSize: 13, display: 'flex', alignItems: 'center', gap: 8 }}
           >
             <div style={{ width: 16, height: 16, borderRadius: '50%', background: '#fff', color: '#000', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 9, fontWeight: 800 }}>B</div>
-            Business Portal
+            Switch to Portal
           </button>
           <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 12, color: '#aaa', background: '#111', padding: '6px 12px', borderRadius: 20, border: '1px solid #222' }}>
             <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#22c55e' }} />

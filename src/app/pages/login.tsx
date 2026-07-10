@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Zap, Mail, Lock } from "lucide-react";
 
-export function Login({ initialRole = "ca", onLogin }: { initialRole?: "ca" | "business", onLogin: (role: "ca" | "business") => void }) {
+export function Login({ initialRole = "ca", onLogin, onSignUp }: { initialRole?: "ca" | "business", onLogin: (role: "ca" | "business") => void, onSignUp: () => void }) {
   const [role, setRole] = useState<"ca" | "business">(initialRole);
   const [email, setEmail] = useState("priya@nairca.in");
   const [password, setPassword] = useState("••••••••");
@@ -136,7 +136,7 @@ export function Login({ initialRole = "ca", onLogin }: { initialRole?: "ca" | "b
           Don't have an account?{" "}
           <button
             type="button"
-            onClick={() => onLogin(role)}
+            onClick={onSignUp}
             className="font-medium hover:underline cursor-pointer border-none bg-transparent p-0 inline-block font-sans hover:text-white"
             style={{ color: "#ffffff", fontSize: "inherit" }}
           >

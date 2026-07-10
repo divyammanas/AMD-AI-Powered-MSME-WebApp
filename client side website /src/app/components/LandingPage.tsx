@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Cpu, ArrowRight, BarChart3, ShieldCheck, TrendingUp, Bot, Building2, FileText, MapPin, MessageCircle, Sparkles, CheckCircle2 } from 'lucide-react';
 
 interface Props {
-  onSelectMode: (mode: 'msme' | 'client') => void;
+  onSelectMode: (mode: 'msme' | 'client' | 'signup') => void;
 }
 
 const msmeFeatures = [
@@ -66,7 +66,7 @@ export default function LandingPage({ onSelectMode }: Props) {
           <div
             onMouseEnter={() => setHovered('msme')}
             onMouseLeave={() => setHovered(null)}
-            onClick={() => onSelectMode('msme')}
+            onClick={() => onSelectMode('signup')}
             className={`group relative flex flex-col p-8 rounded-2xl transition-all duration-300 cursor-pointer overflow-hidden
               ${hovered === 'msme' ? 'bg-[#111] border border-[#fff] shadow-[0_12px_32px_rgba(255,255,255,0.06)] -translate-y-2 scale-[1.02]' : 'bg-[#0d0d0d] border border-[#222]'}`}
           >
@@ -103,7 +103,7 @@ export default function LandingPage({ onSelectMode }: Props) {
           <div
             onMouseEnter={() => setHovered('client')}
             onMouseLeave={() => setHovered(null)}
-            onClick={() => onSelectMode('client')}
+            onClick={() => onSelectMode('signup')}
             className={`group relative flex flex-col p-8 rounded-2xl transition-all duration-300 cursor-pointer overflow-hidden
               ${hovered === 'client' ? 'bg-[#111] border border-[#fff] shadow-[0_12px_32px_rgba(255,255,255,0.06)] -translate-y-2 scale-[1.02]' : 'bg-[#0d0d0d] border border-[#222]'}`}
           >
