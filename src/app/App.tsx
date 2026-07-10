@@ -2,10 +2,11 @@ import { useState, useEffect } from "react";
 import { LandingClient } from "./pages/landing-client";
 import { Login } from "./pages/login";
 import { AppShell } from "./components/AppShell";
+import Signup from "./pages/signup";
 import BusinessApp from "../../client side website /src/app/App";
 
 export default function App() {
-  const [screen, setScreen] = useState<"landing" | "login" | "dashboard">(() => {
+  const [screen, setScreen] = useState<"landing" | "login" | "dashboard" | "signup">(() => {
     const path = window.location.pathname;
     if (path === "/dashboard") {
       const isAuthenticated = sessionStorage.getItem("authenticated") === "true";
@@ -13,6 +14,9 @@ export default function App() {
     }
     if (path === "/login") {
       return "login";
+    }
+    if (path === "/signup") {
+      return "signup";
     }
     return "landing";
   });
@@ -27,6 +31,10 @@ export default function App() {
     } else if (screen === "login") {
       if (window.location.pathname !== "/login") {
         window.history.pushState({}, "", "/login");
+      }
+    } else if (screen === "signup") {
+      if (window.location.pathname !== "/signup") {
+        window.history.pushState({}, "", "/signup");
       }
     } else if (screen === "dashboard") {
       if (window.location.pathname !== "/dashboard") {
@@ -43,6 +51,8 @@ export default function App() {
         setScreen(isAuthenticated ? "dashboard" : "landing");
       } else if (path === "/login") {
         setScreen("login");
+      } else if (path === "/signup") {
+        setScreen("signup");
       } else {
         setScreen("landing");
       }
@@ -67,7 +77,11 @@ export default function App() {
   }
 
   if (screen === "login") {
-    return <Login initialRole={pendingRole} onLogin={handleLogin} />;
+    return <Login initialRole={pendingRole} onLogin={handleLogin} onSignUp={() => setScreen("signup")} />;
+  }
+
+  if (screen === "signup") {
+    return <Signup onBack={() => setScreen("login")} onComplete={(role) => handleLogin(role)} />;
   }
 
   if (screen === "dashboard") {
