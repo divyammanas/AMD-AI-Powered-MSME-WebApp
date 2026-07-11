@@ -102,7 +102,7 @@ export default function ComplianceAssistant() {
   return (
     <div className="p-6 space-y-5">
       {/* Status cards */}
-      <div className="grid gap-4" style={{ gridTemplateColumns: 'repeat(3, 1fr)' }}>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {categories.map(cat => (
           <div key={cat.name} className="rounded-lg p-5" style={{ background: 'var(--card)', border: '1px solid var(--border)' }}>
             <div className="flex items-center justify-between mb-4">
@@ -137,7 +137,7 @@ export default function ComplianceAssistant() {
       </div>
 
       {/* Deadlines + AI Q&A */}
-      <div className="grid gap-4" style={{ gridTemplateColumns: '1fr 380px' }}>
+      <div className="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-4">
         {/* Deadlines */}
         <div className="rounded-lg overflow-hidden" style={{ background: 'var(--card)', border: '1px solid var(--border)' }}>
           <div className="flex items-center gap-2 px-5 py-4" style={{ borderBottom: '1px solid var(--border)' }}>
@@ -146,8 +146,9 @@ export default function ComplianceAssistant() {
               Upcoming Deadlines
             </h3>
           </div>
-          <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-            <thead>
+          <div className="overflow-x-auto">
+            <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: '400px' }}>
+              <thead>
               <tr style={{ background: 'var(--accent)' }}>
                 {['Task', 'Due Date', 'Days Left', 'Status'].map(h => (
                   <th key={h} style={{ padding: '9px 16px', textAlign: 'left', fontSize: 11, color: 'var(--muted-foreground)', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
@@ -175,7 +176,8 @@ export default function ComplianceAssistant() {
                 );
               })}
             </tbody>
-          </table>
+            </table>
+          </div>
         </div>
 
         {/* AI Q&A */}

@@ -23,7 +23,7 @@ export default function LandingPage({ onSelectMode }: Props) {
   const [hovered, setHovered] = useState<'msme' | 'client' | null>(null);
 
   return (
-    <div className="min-h-screen bg-[#080808] font-['DM_Sans'] flex flex-col items-center justify-center p-6 md:p-10 relative overflow-hidden text-[#fff]">
+    <div className="min-h-screen bg-[#080808] font-['DM_Sans'] flex flex-col items-center justify-center p-4 sm:p-6 md:p-10 relative overflow-hidden text-[#fff]">
       
       {/* Subtle grid background */}
       <div className="absolute inset-0 z-0 opacity-40" style={{
@@ -60,7 +60,7 @@ export default function LandingPage({ onSelectMode }: Props) {
         </div>
 
         {/* Cards Grid */}
-        <div className="grid md:grid-cols-2 gap-6 w-full animate-[fadeUp_0.8s_ease-out]">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full animate-[fadeUp_0.8s_ease-out]">
           
           {/* MSME Card */}
           <div

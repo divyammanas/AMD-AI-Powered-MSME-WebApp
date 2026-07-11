@@ -136,7 +136,7 @@ export default function FinancialAnalysis() {
 
       {/* Table */}
       <div className="rounded-xl overflow-hidden" style={{ background: '#0d0d0d', border: '1px solid #222' }}>
-        <div className="flex items-center justify-between px-6 py-5 border-b border-[#222]">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 px-4 sm:px-6 py-5 border-b border-[#222]">
           <h3 style={{ fontFamily: "'Roboto Slab', serif", fontSize: 16, fontWeight: 600, color: '#fff' }}>
             Monthly Summary
           </h3>
@@ -181,9 +181,9 @@ export default function FinancialAnalysis() {
 
       {/* AI Report */}
       {showReport && (
-        <div className="rounded-xl p-6 relative overflow-hidden" style={{ background: '#0d0d0d', border: '1px solid #fff' }}>
+        <div className="rounded-xl p-4 sm:p-6 relative overflow-hidden" style={{ background: '#0d0d0d', border: '1px solid #fff' }}>
           <div className="absolute top-0 left-0 w-32 h-32 bg-white opacity-[0.03] blur-3xl rounded-full -translate-x-1/2 -translate-y-1/2" />
-          <div className="flex items-center justify-between mb-5 relative z-10">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-5 relative z-10">
             <div className="flex items-center gap-2">
               <div className="w-8 h-8 rounded-lg bg-[#fff] text-[#000] flex items-center justify-center">
                 <FileText size={16} />

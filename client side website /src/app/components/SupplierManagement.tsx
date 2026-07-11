@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, ReactElement } from 'react';
 import { Search, Star, TrendingUp, TrendingDown, Truck, CheckCircle2, AlertCircle, XCircle } from 'lucide-react';
 
 const suppliers = [
@@ -14,7 +14,7 @@ const suppliers = [
 
 const topSuppliers = suppliers.filter(s => s.rating >= 4.1).slice(0, 3);
 
-const statusIcon = {
+const statusIcon: Record<string, ReactElement> = {
   active: <CheckCircle2 size={13} color="#10b981" />,
   review: <AlertCircle size={13} color="#f59e0b" />,
   inactive: <XCircle size={13} color="#ffffff" />,
@@ -57,7 +57,7 @@ export default function SupplierManagement() {
         <h3 style={{ fontFamily: "'Roboto Slab', serif", fontSize: 14, fontWeight: 500, color: 'var(--foreground)', marginBottom: 12 }}>
           Top Performers
         </h3>
-        <div className="grid gap-4" style={{ gridTemplateColumns: 'repeat(3, 1fr)' }}>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {topSuppliers.map((s, i) => (
             <div key={s.name} className="rounded-lg p-5" style={{ background: 'var(--card)', border: `1px solid ${i === 0 ? 'var(--primary)' : 'var(--border)'}` }}>
               <div className="flex items-start justify-between mb-3">
@@ -141,8 +141,9 @@ export default function SupplierManagement() {
 
       {/* Table */}
       <div className="rounded-lg overflow-hidden" style={{ background: 'var(--card)', border: '1px solid var(--border)' }}>
-        <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-          <thead>
+        <div className="overflow-x-auto">
+          <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: '600px' }}>
+            <thead>
             <tr style={{ background: 'var(--accent)' }}>
               {['Supplier', 'Category', 'City', 'Rating', 'On-Time Delivery', 'Avg Lead Time', 'YTD Spend', 'Trend', 'Status'].map(h => (
                 <th key={h} style={{ padding: '10px 14px', textAlign: 'left', fontSize: 11, color: 'var(--muted-foreground)', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.05em', whiteSpace: 'nowrap' }}>
@@ -193,5 +194,6 @@ export default function SupplierManagement() {
         </table>
       </div>
     </div>
+  </div>
   );
 }

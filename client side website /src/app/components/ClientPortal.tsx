@@ -142,8 +142,8 @@ export default function ClientPortal({ onBack }: Props) {
       `}</style>
 
       {/* Top nav */}
-      <header style={{ height: 60, background: '#000', borderBottom: '1px solid #1a1a1a', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 32px', position: 'sticky', top: 0, zIndex: 50 }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
+      <header className="px-4 md:px-8" style={{ height: 60, background: '#000', borderBottom: '1px solid #1a1a1a', display: 'flex', alignItems: 'center', justifyContent: 'space-between', position: 'sticky', top: 0, zIndex: 50 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
           <button
             onClick={onBack}
             className="cp-btn-ghost"
@@ -156,7 +156,7 @@ export default function ClientPortal({ onBack }: Props) {
             <div style={{ width: 28, height: 28, borderRadius: 6, overflow: "hidden", display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <img src="/logo.jpg" alt="Logo" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
             </div>
-            <span style={{ fontFamily: "'Roboto Slab', serif", fontSize: 15, fontWeight: 600 }}>Subsidy<span style={{ color: '#aaa' }}>Setu</span> Business Portal</span>
+            <span style={{ fontFamily: "'Roboto Slab', serif", fontSize: 15, fontWeight: 600 }}>Subsidy<span style={{ color: '#aaa' }}>Setu</span> <span className="hidden sm:inline">Business Portal</span></span>
           </div>
         </div>
         <div className="hidden sm:flex" style={{ alignItems: 'center', gap: 20 }}>
@@ -168,7 +168,7 @@ export default function ClientPortal({ onBack }: Props) {
       </header>
 
       {/* Hero */}
-      <div className="px-6 md:px-12 py-12 md:py-14" style={{ background: '#000', borderBottom: '1px solid #1a1a1a', position: 'relative', overflow: 'hidden' }}>
+      <div className="px-4 sm:px-6 md:px-12 py-10 md:py-14" style={{ background: '#000', borderBottom: '1px solid #1a1a1a', position: 'relative', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
         <div style={{ position: 'relative', zIndex: 1, maxWidth: 700, animation: 'fadeUp 0.6s ease-out' }}>
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'rgba(255,255,255,0.06)', border: '1px solid #2a2a2a', borderRadius: 20, padding: '4px 12px', marginBottom: 18 }}>
@@ -201,9 +201,9 @@ export default function ClientPortal({ onBack }: Props) {
         </div>
       </div>
 
-      <div className="px-6 md:px-10 py-10 md:py-16 mx-auto max-w-[1200px]">
+      <div className="px-4 sm:px-6 md:px-10 py-8 md:py-16 mx-auto max-w-[1200px]">
         {/* ── CA SEARCH ── */}
-        <section className="cp-card" style={{ background: '#0d0d0d', border: '1px solid #222', borderRadius: 14, padding: 32, marginBottom: 28 }}>
+        <section className="cp-card p-4 sm:p-6 md:p-8" style={{ background: '#0d0d0d', border: '1px solid #222', borderRadius: 14, marginBottom: 28 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 6 }}>
             <Search size={18} />
             <h2 style={{ fontFamily: "'Roboto Slab', serif", fontSize: 20, fontWeight: 600, color: '#fff', margin: 0 }}>Search CA by Client ID</h2>
@@ -297,7 +297,7 @@ export default function ClientPortal({ onBack }: Props) {
               Filter by Speciality <ChevronDown size={13} />
             </button>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: 16 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 16 }}>
             {nearbyCAs.map((ca, i) => (
               <div
                 key={ca.id}
@@ -357,8 +357,8 @@ export default function ClientPortal({ onBack }: Props) {
         </section>
 
         {/* ── DOCUMENT VAULT ── */}
-        <section className="cp-card" style={{ background: '#0d0d0d', border: '1px solid #222', borderRadius: 14, padding: 32, marginBottom: 28 }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 24 }}>
+        <section className="cp-card p-4 sm:p-6 md:p-8" style={{ background: '#0d0d0d', border: '1px solid #222', borderRadius: 14, marginBottom: 28 }}>
+          <div className="flex flex-col sm:flex-row justify-between sm:items-start gap-4 mb-6">
             <div>
               <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 6 }}>
                 <Upload size={18} />
@@ -366,7 +366,7 @@ export default function ClientPortal({ onBack }: Props) {
               </div>
               <p style={{ fontSize: 13, color: '#666', margin: 0 }}>Securely upload documents required for government MSME scheme claims.</p>
             </div>
-            <div style={{ textAlign: 'right' }}>
+            <div className="text-left sm:text-right">
               <div style={{ fontFamily: "'Roboto Slab', serif", fontSize: 26, fontWeight: 700, lineHeight: 1 }}>{uploadedCount}</div>
               <div style={{ fontSize: 11, color: '#555', marginTop: 2 }}>of {requiredDocs.length} uploaded</div>
               <div style={{ fontSize: 11, color: uploadedRequired === requiredCount ? '#22c55e' : '#888', marginTop: 4 }}>
@@ -454,8 +454,8 @@ export default function ClientPortal({ onBack }: Props) {
         </section>
 
         {/* ── SCHEME ELIGIBILITY TEASER ── */}
-        <section className="cp-card" style={{ background: '#0d0d0d', border: '1px solid #222', borderRadius: 14, padding: 28 }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <section className="cp-card p-4 sm:p-6 md:p-7" style={{ background: '#0d0d0d', border: '1px solid #222', borderRadius: 14 }}>
+          <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-4">
             <div>
               <h2 style={{ fontFamily: "'Roboto Slab', serif", fontSize: 18, fontWeight: 600, color: '#fff', margin: '0 0 6px' }}>Government Scheme Eligibility</h2>
               <p style={{ fontSize: 13, color: '#555', margin: 0 }}>Upload required docs to auto-scan eligibility across 40+ MSME schemes.</p>
@@ -508,7 +508,7 @@ export default function ClientPortal({ onBack }: Props) {
         <div
           className="cp-chat-panel"
           style={{
-            position: 'fixed', bottom: 24, right: 24, width: 380, height: 560,
+            position: 'fixed', bottom: 24, right: 'min(24px, 4vw)', width: 'calc(100vw - 32px)', maxWidth: 380, height: 'calc(100vh - 120px)', maxHeight: 560,
             background: '#050505', border: '1px solid #fff', borderRadius: 16, zIndex: 200,
             display: 'flex', flexDirection: 'column', overflow: 'hidden',
             boxShadow: '0 20px 60px rgba(0,0,0,0.8)',

@@ -81,7 +81,7 @@ export default function Dashboard() {
       <div className="grid lg:grid-cols-3 gap-4">
         {/* Revenue chart */}
         <div className="rounded-xl p-5 lg:col-span-2" style={{ background: '#0d0d0d', border: '1px solid #222' }}>
-          <div className="flex items-center justify-between mb-4">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 mb-4">
             <h3 style={{ fontFamily: "'Roboto Slab', serif", color: '#fff', fontSize: 16, fontWeight: 600 }}>
               Revenue vs Expenses
             </h3>
