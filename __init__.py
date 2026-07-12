@@ -1,1 +1,1 @@
-"""SubsidyDesk backend package."""
+"""Business services."""
