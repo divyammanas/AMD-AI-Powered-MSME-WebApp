@@ -66,7 +66,7 @@ export default function LandingPage({ onSelectMode }: Props) {
           <div
             onMouseEnter={() => setHovered('msme')}
             onMouseLeave={() => setHovered(null)}
-            onClick={() => onSelectMode('signup')}
+            onClick={() => onSelectMode('msme')}
             className={`group relative flex flex-col p-8 rounded-2xl transition-all duration-300 cursor-pointer overflow-hidden
               ${hovered === 'msme' ? 'bg-[#111] border border-[#fff] shadow-[0_12px_32px_rgba(255,255,255,0.06)] -translate-y-2 scale-[1.02]' : 'bg-[#0d0d0d] border border-[#222]'}`}
           >
@@ -103,7 +103,7 @@ export default function LandingPage({ onSelectMode }: Props) {
           <div
             onMouseEnter={() => setHovered('client')}
             onMouseLeave={() => setHovered(null)}
-            onClick={() => onSelectMode('signup')}
+            onClick={() => onSelectMode('client')}
             className={`group relative flex flex-col p-8 rounded-2xl transition-all duration-300 cursor-pointer overflow-hidden
               ${hovered === 'client' ? 'bg-[#111] border border-[#fff] shadow-[0_12px_32px_rgba(255,255,255,0.06)] -translate-y-2 scale-[1.02]' : 'bg-[#0d0d0d] border border-[#222]'}`}
           >
@@ -113,7 +113,7 @@ export default function LandingPage({ onSelectMode }: Props) {
                 <Building2 className="w-6 h-6" />
               </div>
               <div>
-                <h3 className="font-['Roboto_Slab'] text-xl font-semibold text-[#fff]">Business Owner</h3>
+                <h3 className="font-['Roboto_Slab'] text-xl font-semibold text-[#fff]">Connect CA</h3>
                 <p className="text-sm text-[#666]">CA Services & Portal</p>
               </div>
             </div>
@@ -132,7 +132,7 @@ export default function LandingPage({ onSelectMode }: Props) {
             </div>
             
             <button className={`w-full py-3 rounded-lg font-bold flex items-center justify-center gap-2 transition-all duration-300 bg-white text-black hover:bg-gray-200 shadow-lg`}>
-              Enter Business Portal <ArrowRight className="w-4 h-4" />
+              Connect CA <ArrowRight className="w-4 h-4" />
             </button>
           </div>
 

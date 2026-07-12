@@ -36,7 +36,7 @@ function MatchCard({ title, confidence, citation, onApprove, onReject }: any) {
   );
 }
 
-export function LandingClient({ onSignIn }: { onSignIn: (role: "ca" | "business") => void }) {
+export function LandingClient({ onSignIn, onSignUp }: { onSignIn: (role: "ca" | "business") => void; onSignUp: (role: "ca" | "business") => void }) {
   const [view, setView] = useState<"ca" | "business">("ca");
   const [queue, setQueue] = useState([
     { id: 1, title: "PMEGP Capital Subsidy", confidence: 98, citation: "Turnover 3.2Cr < 5Cr Limit (Sec 4.1)" },
@@ -67,7 +67,7 @@ export function LandingClient({ onSignIn }: { onSignIn: (role: "ca" | "business"
           </a>
           <div className="flex gap-4 items-center">
             <button onClick={() => onSignIn(view)} className="text-sm font-medium text-[#888888] hover:text-white transition-colors">Sign In</button>
-            <button onClick={() => onSignIn(view)} className="text-sm font-bold px-4 py-2 bg-white text-black rounded hover:bg-gray-200 transition-colors">Get Started</button>
+            <button onClick={() => onSignUp(view)} className="text-sm font-bold px-4 py-2 bg-white text-black rounded hover:bg-gray-200 transition-colors">Get Started</button>
           </div>
         </div>
       </nav>
@@ -102,7 +102,7 @@ export function LandingClient({ onSignIn }: { onSignIn: (role: "ca" | "business"
                 : "Get matched with a verified Chartered Accountant equipped with AI tools to instantly identify and claim government subsidies you didn't know you qualified for."}
             </p>
 
-            <button onClick={() => onSignIn(view)} className="px-6 py-3 bg-white text-black font-bold rounded flex items-center gap-2 hover:bg-gray-200 transition-colors">
+            <button onClick={() => onSignUp(view)} className="px-6 py-3 bg-white text-black font-bold rounded flex items-center gap-2 hover:bg-gray-200 transition-colors">
               {view === "ca" ? "Start Matching Clients" : "Find My Subsidy"}
             </button>
           </div>
@@ -181,106 +181,108 @@ export function LandingClient({ onSignIn }: { onSignIn: (role: "ca" | "business"
         </section>
 
         {/* 3. TRUST PROOF */}
-        <section className="py-24 max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <div>
-            <h2 className="text-3xl font-bold mb-6">Transparency is non-negotiable.</h2>
-            <p className="text-[#888888] mb-6 leading-relaxed">Every match our AI surfaces is backed by an exact citation. If the AI claims a client is eligible, it shows you exactly where in the government notification that rule exists, alongside the specific piece of client data that satisfies it.</p>
-            <ul className="space-y-4">
-              <li className="flex gap-3 items-start">
-                <CheckCircle className="w-5 h-5 text-white shrink-0 mt-0.5" />
-                <span className="text-sm text-[#888888]">No black box reasoning.</span>
-              </li>
-              <li className="flex gap-3 items-start">
-                <CheckCircle className="w-5 h-5 text-white shrink-0 mt-0.5" />
-                <span className="text-sm text-[#888888]">Direct PDF links to official government gazettes.</span>
-              </li>
-            </ul>
-          </div>
-          
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            className="p-6 border border-[#222222] bg-[#0a0a0a] rounded-lg font-mono text-sm relative"
-          >
-            <div className="absolute top-0 right-0 p-2 border-b border-l border-[#222222] bg-[#111111] rounded-bl-lg text-xs font-sans font-bold">Trace Viewer</div>
-            <div className="mb-4 pt-4">
-              <span className="text-[#888888]">Assertion:</span> <span className="text-white">Applicant turnover requirement met.</span>
+        <section className="py-24 bg-[#adadad] text-black border-y border-[#222222]">
+          <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <h2 className="text-3xl font-bold mb-6 text-black">Transparency is non-negotiable.</h2>
+              <p className="text-gray-950 mb-6 leading-relaxed">Every match our AI surfaces is backed by an exact citation. If the AI claims a client is eligible, it shows you exactly where in the government notification that rule exists, alongside the specific piece of client data that satisfies it.</p>
+              <ul className="space-y-4">
+                <li className="flex gap-3 items-start">
+                  <CheckCircle className="w-5 h-5 text-black shrink-0 mt-0.5" />
+                  <span className="text-sm text-gray-950 font-semibold">No black box reasoning.</span>
+                </li>
+                <li className="flex gap-3 items-start">
+                  <CheckCircle className="w-5 h-5 text-black shrink-0 mt-0.5" />
+                  <span className="text-sm text-gray-950 font-semibold">Direct PDF links to official government gazettes.</span>
+                </li>
+              </ul>
             </div>
-            <div className="mb-4 pl-4 border-l-2 border-[#222222]">
-              <span className="text-[#888888] block text-xs mb-1">EVIDENCE 1: GST Data</span>
-              <span className="text-white">FY23_Turnover = ₹3.2Cr</span>
-            </div>
-            <div className="mb-4 pl-4 border-l-2 border-[#222222]">
-              <span className="text-[#888888] block text-xs mb-1">EVIDENCE 2: Govt Rule</span>
-              <span className="text-white">"Turnover must not exceed ₹5.0Cr"</span>
-              <a href="#" className="flex items-center gap-1 text-[#888888] hover:text-white mt-1 text-xs underline decoration-[#222222]">
-                <LinkIcon className="w-3 h-3" /> CGST_Notif_2023.pdf, Page 12
-              </a>
-            </div>
-            <div className="mt-6 border-t border-[#222222] pt-4 flex items-center justify-between font-sans">
-              <span className="text-xs font-bold text-emerald-500">Trace Verified</span>
-            </div>
-          </motion.div>
-        </section>
-
-        {/* 4. CA TIERS */}
-        <section className="py-24 bg-[#050505] border-y border-[#222222]">
-          <div className="max-w-6xl mx-auto px-6">
-            <div className="mb-12 text-center">
-              <h2 className="text-3xl font-bold mb-4">Functional Pricing</h2>
-              <div className="inline-block px-4 py-2 border border-[#222222] bg-[#0a0a0a] rounded text-sm text-white shadow-sm">
-                <ShieldCheck className="inline w-4 h-4 mr-2 text-[#888888]" />
-                Core AI matching accuracy is <strong className="text-white">100% identical</strong> across all tiers.
+            
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              className="p-6 border border-[#222222] bg-[#0a0a0a] rounded-lg font-mono text-sm relative text-white"
+            >
+              <div className="absolute top-0 right-0 p-2 border-b border-l border-[#222222] bg-[#111111] rounded-bl-lg text-xs font-sans font-bold text-white">Trace Viewer</div>
+              <div className="mb-4 pt-4">
+                <span className="text-[#888888]">Assertion:</span> <span className="text-white">Applicant turnover requirement met.</span>
               </div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {[
-                { name: "Starter", price: "Free", limit: "Up to 10 clients", features: ["Manual drafting", "Basic scheme alerts"] },
-                { name: "Growth", price: "₹4,999/mo", limit: "Unlimited clients", features: ["Auto-drafting AI", "Full citation traces", "Success-fee tools"], highlight: true },
-                { name: "Enterprise", price: "Custom", limit: "Unlimited clients", features: ["API access", "On-prem data options", "Dedicated account mgr"] }
-              ].map(tier => (
-                <div key={tier.name} className={`p-6 border rounded-lg flex flex-col transition-colors ${tier.highlight ? 'border-white bg-[#0d0d0d] shadow-lg' : 'border-[#222222] bg-[#0a0a0a] hover:border-gray-500'}`}>
-                  <h3 className="font-bold text-lg mb-2">{tier.name}</h3>
-                  <div className="text-2xl font-bold mb-1">{tier.price}</div>
-                  <div className="text-xs text-[#888888] mb-6 pb-6 border-b border-[#222222]">{tier.limit}</div>
-                  <ul className="space-y-3 mb-8 flex-1">
-                    {tier.features.map(f => (
-                      <li key={f} className="text-sm flex items-start gap-2">
-                        <Check className="w-4 h-4 text-[#888888] shrink-0 mt-0.5" /> {f}
-                      </li>
-                    ))}
-                  </ul>
-                  <button className={`w-full py-2 rounded text-sm font-bold transition-colors ${tier.highlight ? 'bg-white text-black hover:bg-gray-200' : 'border border-[#222222] text-[#888888] hover:text-white hover:bg-[#111111]'}`}>
-                    Select {tier.name}
-                  </button>
-                </div>
-              ))}
-            </div>
+              <div className="mb-4 pl-4 border-l-2 border-[#222222]">
+                <span className="text-[#888888] block text-xs mb-1">EVIDENCE 1: GST Data</span>
+                <span className="text-white">FY23_Turnover = ₹3.2Cr</span>
+              </div>
+              <div className="mb-4 pl-4 border-l-2 border-[#222222]">
+                <span className="text-[#888888] block text-xs mb-1">EVIDENCE 2: Govt Rule</span>
+                <span className="text-white">"Turnover must not exceed ₹5.0Cr"</span>
+                <a href="#" className="flex items-center gap-1 text-[#888888] hover:text-white mt-1 text-xs underline decoration-[#222222]">
+                  <LinkIcon className="w-3 h-3" /> CGST_Notif_2023.pdf, Page 12
+                </a>
+              </div>
+              <div className="mt-6 border-t border-[#222222] pt-4 flex items-center justify-between font-sans">
+                <span className="text-xs font-bold text-emerald-500">Trace Verified</span>
+              </div>
+            </motion.div>
           </div>
         </section>
 
-        {/* 5. MARKETPLACE FLOW */}
+        {/* 4. MARKETPLACE FLOW */}
         <section className="py-24 max-w-6xl mx-auto px-6">
-          <h2 className="text-3xl font-bold mb-12 text-center">How matching works for businesses</h2>
+          <h2 className="text-3xl font-bold mb-12 text-center text-white">How matching works for businesses</h2>
           <div className="flex flex-col md:flex-row gap-4 items-stretch">
-            <div className="flex-1 p-6 border border-[#222222] bg-[#0a0a0a] rounded-lg">
+            <div className="flex-1 p-6 border border-[#222222] bg-[#0a0a0a] rounded-lg text-white">
               <div className="text-xs text-[#888888] mb-2 font-mono">STEP 01</div>
               <h3 className="font-bold mb-2">Profile Intake</h3>
               <p className="text-sm text-[#888888]">Business submits basic GST/Udyam data. AI identifies potential matches instantly.</p>
             </div>
             <div className="hidden md:flex items-center justify-center text-[#222222]"><ArrowRight /></div>
-            <div className="flex-1 p-6 border border-[#222222] bg-[#0a0a0a] rounded-lg">
+            <div className="flex-1 p-6 border border-[#222222] bg-[#0a0a0a] rounded-lg text-white">
               <div className="text-xs text-[#888888] mb-2 font-mono">STEP 02</div>
               <h3 className="font-bold mb-2">CA Queue Route</h3>
               <p className="text-sm text-[#888888]">The profile is routed to verified CAs in the network who specialize in those specific schemes.</p>
             </div>
             <div className="hidden md:flex items-center justify-center text-[#222222]"><ArrowRight /></div>
-            <div className="flex-1 p-6 border border-[#222222] bg-[#0a0a0a] rounded-lg border-l-4 border-l-[#888888]">
+            <div className="flex-1 p-6 border border-[#222222] bg-[#0a0a0a] rounded-lg border-l-4 border-l-[#888888] text-white">
               <div className="text-xs text-[#888888] mb-2 font-mono">STEP 03</div>
               <h3 className="font-bold mb-2">SLA Enforced</h3>
               <p className="text-sm text-[#888888]">If a CA does not accept the match within 24 hours, the lead is rerouted to ensure the business gets served.</p>
+            </div>
+          </div>
+        </section>
+
+        {/* 5. CA TIERS */}
+        <section className="py-24 bg-[#adadad] text-black border-y border-[#222222]">
+          <div className="max-w-6xl mx-auto px-6">
+            <div className="mb-12 text-center">
+              <h2 className="text-3xl font-bold mb-4 text-black">Functional Pricing</h2>
+              <div className="inline-block px-4 py-2 border border-gray-400 bg-white/20 rounded text-sm text-black shadow-sm">
+                <ShieldCheck className="inline w-4 h-4 mr-2 text-black" />
+                Core AI matching accuracy is <strong className="text-black">100% identical</strong> across all tiers.
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {[
+                { name: "Starter", price: "₹250/mo", limit: "Up to 10 clients", features: ["Manual drafting", "Basic scheme alerts"] },
+                { name: "Growth", price: "₹500/mo", limit: "Unlimited clients", features: ["Auto-drafting AI", "Full citation traces", "Success-fee tools"], highlight: true },
+                { name: "Enterprise", price: "₹1,500/mo", limit: "Unlimited clients", features: ["API access", "On-prem data options", "Dedicated account mgr"] }
+              ].map(tier => (
+                <div key={tier.name} className={`p-6 border rounded-lg flex flex-col transition-colors text-white ${tier.highlight ? 'border-white bg-[#0d0d0d] shadow-lg' : 'border-[#222222] bg-[#0a0a0a] hover:border-gray-500'}`}>
+                  <h3 className="font-bold text-lg mb-2">{tier.name}</h3>
+                  <div className="text-2xl font-bold mb-1">{tier.price}</div>
+                  <div className="text-xs text-gray-400 mb-6 pb-6 border-b border-[#222222]">{tier.limit}</div>
+                  <ul className="space-y-3 mb-8 flex-1">
+                    {tier.features.map(f => (
+                      <li key={f} className="text-sm flex items-start gap-2 text-gray-200">
+                        <Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" /> {f}
+                      </li>
+                    ))}
+                  </ul>
+                  <button className={`w-full py-2 rounded text-sm font-bold transition-colors ${tier.highlight ? 'bg-white text-black hover:bg-gray-200' : 'border border-gray-700 text-gray-300 hover:text-white hover:bg-[#111111]'}`}>
+                    Select {tier.name}
+                  </button>
+                </div>
+              ))}
             </div>
           </div>
         </section>
@@ -312,17 +314,18 @@ export function LandingClient({ onSignIn }: { onSignIn: (role: "ca" | "business"
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
           <div>
             <a href="/" className="flex items-center gap-2 mb-4 hover:opacity-80 transition-opacity">
-              <div className="w-5 h-5 bg-white flex items-center justify-center rounded-sm">
-                <span className="text-black font-bold text-[10px]">S</span>
+              <div className="w-6 h-6 rounded-sm overflow-hidden flex items-center justify-center">
+                <img src="/logo.jpg" alt="Logo" className="w-full h-full object-cover" />
               </div>
               <span className="font-bold tracking-tight">Suvan</span>
             </a>
             <p className="text-[#888888] max-w-xs mb-6">
-              AI infrastructure for MSME compliance and government subsidies.
+              AI infrastructure for MSME compliance and government subsidies. <br/>
+              Empowering Chartered Accountants (CAs) and businesses nationwide.
             </p>
             <div className="p-4 border border-[#222222] rounded bg-[#0a0a0a] max-w-sm">
-              <strong className="text-white block mb-1">Explicitly Out of Scope for v1:</strong>
-              <span className="text-[#888888]">Generic accounting, tax filing, tender matching, or compliance monitoring. We do subsidies.</span>
+              <strong className="text-white block mb-1">Production Ready</strong>
+              <span className="text-[#888888]">Ready to go live in market.</span>
             </div>
           </div>
           <div className="flex flex-col md:items-end text-[#888888] space-y-2">
