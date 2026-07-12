@@ -161,7 +161,7 @@ export default function ChatBot() {
     <div className="flex flex-col h-full" style={{ height: 'calc(100vh - 56px)' }}>
       {/* Header */}
       <div
-        className="flex-shrink-0 flex items-center justify-between px-6 py-4"
+        className="flex-shrink-0 flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4"
         style={{ background: 'var(--card)', borderBottom: '1px solid var(--border)' }}
       >
         <div className="flex items-center gap-3">
@@ -187,7 +187,7 @@ export default function ChatBot() {
       </div>
 
       {/* Messages */}
-      <div className="flex-1 overflow-y-auto px-6 py-5 flex flex-col gap-5">
+      <div className="flex-1 overflow-y-auto px-4 sm:px-6 py-5 flex flex-col gap-5">
         {messages.map(msg => (
           <div key={msg.id} className={`flex gap-3 ${msg.role === 'user' ? 'flex-row-reverse' : 'flex-row'}`}>
             <div
@@ -246,7 +246,7 @@ export default function ChatBot() {
 
       {/* Suggestions */}
       {messages.length <= 1 && (
-        <div className="flex-shrink-0 px-6 pb-3 flex gap-2 flex-wrap">
+        <div className="flex-shrink-0 px-4 sm:px-6 pb-3 flex gap-2 flex-wrap">
           {suggestions.map(s => (
             <button
               key={s}
@@ -262,7 +262,7 @@ export default function ChatBot() {
 
       {/* Input */}
       <div
-        className="flex-shrink-0 px-6 py-4"
+        className="flex-shrink-0 px-4 sm:px-6 py-3 sm:py-4"
         style={{ borderTop: '1px solid var(--border)', background: 'var(--card)' }}
       >
         <div

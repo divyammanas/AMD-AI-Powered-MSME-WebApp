@@ -7,7 +7,7 @@ type Msg = { role: "user" | "assistant"; text: string };
 
 export function ChatPage() {
   const [messages, setMessages] = useState<Msg[]>([
-    { role: "assistant", text: "Hi! I'm your SubsidyDesk AI agent. Ask me about schemes, eligibility, client documents or draft applications. (AI integration coming soon.)" },
+    { role: "assistant", text: "Hi! I'm your Suvan AI agent. Ask me about schemes, eligibility, client documents or draft applications. (AI integration coming soon.)" },
   ]);
   const [input, setInput] = useState("");
 

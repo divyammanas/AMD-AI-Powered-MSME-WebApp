@@ -97,7 +97,7 @@ export default function OperationalOptimization() {
   return (
     <div className="p-6 space-y-5">
       {/* Overview strip */}
-      <div className="grid gap-4" style={{ gridTemplateColumns: 'repeat(4, 1fr)' }}>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {[
           { label: 'Overall Efficiency', value: `${avgEfficiency}%`, icon: Zap, color: '#f59e0b' },
           { label: 'Identified Savings', value: totalSavings, icon: CheckCircle2, color: '#10b981' },
@@ -121,7 +121,7 @@ export default function OperationalOptimization() {
         <h3 style={{ fontFamily: "'Roboto Slab', serif", fontSize: 14, fontWeight: 500, color: 'var(--foreground)', marginBottom: 12 }}>
           Process Analysis & Recommendations
         </h3>
-        <div className="grid gap-3" style={{ gridTemplateColumns: '1fr 1fr' }}>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {processes.map(p => (
             <div key={p.name} className="rounded-lg p-5" style={{ background: 'var(--card)', border: '1px solid var(--border)' }}>
               <div className="flex items-start justify-between mb-2">
@@ -147,7 +147,7 @@ export default function OperationalOptimization() {
       </div>
 
       {/* Bottlenecks + Roadmap */}
-      <div className="grid gap-4" style={{ gridTemplateColumns: '1fr 340px' }}>
+      <div className="grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-4">
         <div className="rounded-lg overflow-hidden" style={{ background: 'var(--card)', border: '1px solid var(--border)' }}>
           <div className="px-5 py-4" style={{ borderBottom: '1px solid var(--border)' }}>
             <h3 style={{ fontFamily: "'Roboto Slab', serif", fontSize: 14, fontWeight: 500, color: 'var(--foreground)' }}>Active Bottlenecks</h3>

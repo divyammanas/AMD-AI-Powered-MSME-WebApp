@@ -23,7 +23,7 @@ export default function LandingPage({ onSelectMode }: Props) {
   const [hovered, setHovered] = useState<'msme' | 'client' | null>(null);
 
   return (
-    <div className="min-h-screen bg-[#080808] font-['DM_Sans'] flex flex-col items-center justify-center p-6 md:p-10 relative overflow-hidden text-[#fff]">
+    <div className="min-h-screen bg-[#080808] font-['DM_Sans'] flex flex-col items-center justify-center p-4 sm:p-6 md:p-10 relative overflow-hidden text-[#fff]">
       
       {/* Subtle grid background */}
       <div className="absolute inset-0 z-0 opacity-40" style={{
@@ -35,14 +35,14 @@ export default function LandingPage({ onSelectMode }: Props) {
         
         {/* Header Section */}
         <div className="text-center mb-16 max-w-2xl animate-[fadeUp_0.6s_ease-out]">
-          <div className="flex items-center justify-center gap-3 mb-6">
+          <a href="/" className="flex items-center justify-center gap-3 mb-6 hover:opacity-80 transition-opacity" style={{ textDecoration: 'none', color: 'inherit' }}>
             <div className="w-12 h-12 rounded-xl overflow-hidden flex items-center justify-center shadow-[0_0_20px_rgba(255,255,255,0.1)]">
               <img src="/logo.jpg" alt="Logo" className="w-full h-full object-cover" />
             </div>
             <h1 className="font-['Roboto_Slab'] text-3xl font-bold tracking-tight text-[#fff]">
-              Subsidy<span className="text-[#aaa]">Setu</span>
+              Suvan
             </h1>
-          </div>
+          </a>
           <h2 className="font-['Roboto_Slab'] text-4xl md:text-5xl font-semibold leading-tight mb-4 text-[#fff]">
             AI-Powered Business Intelligence <br />
             <span className="text-[#aaa]">for Indian MSMEs</span>
@@ -60,7 +60,7 @@ export default function LandingPage({ onSelectMode }: Props) {
         </div>
 
         {/* Cards Grid */}
-        <div className="grid md:grid-cols-2 gap-6 w-full animate-[fadeUp_0.8s_ease-out]">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full animate-[fadeUp_0.8s_ease-out]">
           
           {/* MSME Card */}
           <div

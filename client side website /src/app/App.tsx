@@ -9,7 +9,7 @@ import ComplianceAssistant from './components/ComplianceAssistant';
 import SupplierManagement from './components/SupplierManagement';
 import LandingPage from './components/LandingPage';
 import ClientPortal from './components/ClientPortal';
-type AppMode = 'landing' | 'msme' | 'client';
+type AppMode = 'landing' | 'msme' | 'client' | 'signup';
 
 const navItems = [
   { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
@@ -28,7 +28,7 @@ export default function App() {
 
   // Initialize mode from localStorage on mount
   useEffect(() => {
-    const savedMode = localStorage.getItem('subsidySetuMode') as AppMode;
+    const savedMode = localStorage.getItem('suvanMode') as AppMode;
     if (savedMode && ['msme', 'client'].includes(savedMode)) {
       setModeState(savedMode);
     }
@@ -39,9 +39,9 @@ export default function App() {
     setModeState(newMode);
     // Persist login state if going to an app portal, clear it if returning to landing
     if (newMode === 'msme' || newMode === 'client') {
-      localStorage.setItem('subsidySetuMode', newMode);
+      localStorage.setItem('suvanMode', newMode);
     } else if (newMode === 'landing') {
-      localStorage.removeItem('subsidySetuMode');
+      localStorage.removeItem('suvanMode');
     }
   };
 
@@ -81,8 +81,8 @@ export default function App() {
       `}</style>
 
       {/* Top nav */}
-      <header style={{ height: 60, background: '#000', borderBottom: '1px solid #1a1a1a', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 32px', position: 'sticky', top: 0, zIndex: 50 }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
+      <header className="px-4 md:px-8" style={{ height: 60, background: '#000', borderBottom: '1px solid #1a1a1a', display: 'flex', alignItems: 'center', justifyContent: 'space-between', position: 'sticky', top: 0, zIndex: 50 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
           <button
             onClick={() => setMode('landing')}
             className="cp-btn-ghost"
@@ -95,19 +95,19 @@ export default function App() {
             <div style={{ width: 28, height: 28, borderRadius: 6, background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <Cpu size={15} color="#000" />
             </div>
-            <span style={{ fontFamily: "'Roboto Slab', serif", fontSize: 15, fontWeight: 600 }}>Subsidy<span style={{ color: '#aaa' }}>Setu</span> Platform</span>
+            <span className="hidden sm:inline" style={{ fontFamily: "'Roboto Slab', serif", fontSize: 15, fontWeight: 600 }}>Suvan Platform</span>
           </div>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
           <button 
             onClick={() => setMode('client')}
             className="cp-btn-ghost"
             style={{ background: 'transparent', border: '1px solid #2a2a2a', borderRadius: 8, padding: '6px 14px', color: '#aaa', fontSize: 13, display: 'flex', alignItems: 'center', gap: 8 }}
           >
             <div style={{ width: 16, height: 16, borderRadius: '50%', background: '#fff', color: '#000', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 9, fontWeight: 800 }}>B</div>
-            Switch to Portal
+            <span className="hidden sm:inline">Switch to Portal</span>
           </button>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 12, color: '#aaa', background: '#111', padding: '6px 12px', borderRadius: 20, border: '1px solid #222' }}>
+          <div className="hidden md:flex" style={{ alignItems: 'center', gap: 6, fontSize: 12, color: '#aaa', background: '#111', padding: '6px 12px', borderRadius: 20, border: '1px solid #222' }}>
             <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#22c55e' }} />
             AMD ROCm Active
           </div>
@@ -115,8 +115,8 @@ export default function App() {
       </header>
 
       {/* Sub Navigation (Horizontal Tabs) */}
-      <div style={{ background: '#000', borderBottom: '1px solid #1a1a1a', padding: '0 32px' }}>
-        <div style={{ display: 'flex', gap: 4, overflowX: 'auto', paddingBottom: 1 }}>
+      <div className="px-4 md:px-8" style={{ background: '#000', borderBottom: '1px solid #1a1a1a' }}>
+        <div style={{ display: 'flex', gap: 4, overflowX: 'auto', paddingBottom: 1, scrollbarWidth: 'none' }} className="no-scrollbar">
           {navItems.map(({ id, label, icon: Icon }) => {
             const isActive = activeTab === id;
             return (
@@ -147,7 +147,7 @@ export default function App() {
       </div>
 
       {/* Main Content Area */}
-      <main style={{ flex: 1, padding: '32px', overflowY: 'auto' }}>
+      <main className="flex-1 p-4 md:p-8 overflow-y-auto">
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
           {renderContent()}
         </div>

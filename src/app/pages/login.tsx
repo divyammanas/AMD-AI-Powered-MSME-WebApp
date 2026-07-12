@@ -15,7 +15,7 @@ export function Login({ initialRole = "ca", onLogin, onSignUp }: { initialRole?:
     <div className="dark min-h-screen flex flex-col items-center justify-center p-4 font-sans selection:bg-white/20" style={{ background: "#080808", color: "#ffffff" }}>
       <div className="w-full max-w-[400px] flex flex-col items-center">
         {/* Logo and Header */}
-        <div className="flex flex-col items-center gap-4 mb-8">
+        <a href="/" className="flex flex-col items-center gap-4 mb-8 hover:opacity-80 transition-opacity" style={{ textDecoration: 'none', color: 'inherit' }}>
           <div
             style={{
               height: 48, width: 48,
@@ -27,10 +27,10 @@ export function Login({ initialRole = "ca", onLogin, onSignUp }: { initialRole?:
             <img src="/logo.jpg" alt="Logo" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
           </div>
           <div className="text-2xl font-bold tracking-tight">
-            Welcome to Subsidy<span style={{ color: "#888888" }}>Setu</span>
+            Welcome to Suvan
           </div>
           <p className="text-sm" style={{ color: "#888888" }}>Sign in to manage clients and schemes</p>
-        </div>
+        </a>
 
         {/* Segmented Control for Role */}
         <div className="flex w-full p-1 mb-6 rounded-xl" style={{ background: "#111111", border: "1px solid #222222" }}>
