@@ -127,7 +127,7 @@ export default function SupplierManagement() {
             fontFamily: "'DM Sans', sans-serif",
           }}
         >
-          {categories.map(c => (
+          {categories.map(c => ( 
             <option key={c} value={c} style={{ background: '#0d1224' }}>
               {c === 'all' ? 'All Categories' : c}
             </option>
