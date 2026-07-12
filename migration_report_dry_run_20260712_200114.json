@@ -1,0 +1,12 @@
+{
+  "start_time": "2026-07-12T20:01:07.055732",
+  "documents_processed": 34,
+  "documents_modified": 31,
+  "chunks_processed": 1,
+  "chunks_modified": 0,
+  "status": "dry-run",
+  "errors": [
+    "argument of type 'NoneType' is not iterable"
+  ],
+  "end_time": "2026-07-12T20:01:14.890130"
+}

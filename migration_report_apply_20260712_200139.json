@@ -1,0 +1,10 @@
+{
+  "start_time": "2026-07-12T20:01:31.662577",
+  "documents_processed": 34,
+  "documents_modified": 31,
+  "chunks_processed": 650,
+  "chunks_modified": 0,
+  "status": "applied",
+  "errors": [],
+  "end_time": "2026-07-12T20:01:39.722805"
+}
