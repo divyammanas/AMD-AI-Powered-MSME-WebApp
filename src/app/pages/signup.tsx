@@ -86,21 +86,21 @@ export default function Signup({ onBack, onComplete }: Props) {
             <ChevronLeft size={16} /> Back to Home
           </button>
           
-          <div className="flex items-center gap-3 mb-8">
+          <a href="/" className="flex items-center gap-3 mb-8 hover:opacity-80 transition-opacity">
             <div className="w-12 h-12 rounded-xl bg-[#fff] flex items-center justify-center shadow-[0_0_20px_rgba(255,255,255,0.1)]">
               <Cpu className="w-6 h-6 text-[#000]" />
             </div>
             <span className="font-['Roboto_Slab'] text-2xl font-bold tracking-tight text-[#fff]">
-              Subsidy<span className="text-[#aaa]">Setu</span>
+              Suvan
             </span>
-          </div>
+          </a>
 
           <h1 className="font-['Roboto_Slab'] text-3xl md:text-4xl font-semibold leading-tight mb-4 text-[#fff]">
             Join India's Leading <br />
             <span className="text-[#aaa]">AI Business Network</span>
           </h1>
           <p className="text-[#888] text-base leading-relaxed mb-8">
-            Whether you're an MSME looking to optimize operations or a Chartered Accountant expanding your client base, SubsidySetu brings the power of AI to your fingertips.
+            Whether you're an MSME looking to optimize operations or a Chartered Accountant expanding your client base, Suvan brings the power of AI to your fingertips.
           </p>
 
           <div className="flex flex-col gap-4 w-full">

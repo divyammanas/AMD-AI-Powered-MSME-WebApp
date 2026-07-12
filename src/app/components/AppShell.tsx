@@ -105,7 +105,7 @@ export function AppShell() {
             {/* Logo mark */}
             <button
               onClick={() => window.location.href = '/'}
-              title="SubsidySetu"
+              title="Suvan"
               style={{
                 height: 32, width: 32, minWidth: 32,
                 borderRadius: 4,
@@ -119,12 +119,15 @@ export function AppShell() {
 
             {/* Wordmark — only visible when expanded */}
             {isExpanded && (
-              <div style={{ flex: 1, overflow: "hidden" }}>
+              <button 
+                onClick={() => window.location.href = '/'}
+                style={{ flex: 1, overflow: "hidden", textAlign: "left", background: "none", border: "none", cursor: "pointer", padding: 0 }}
+              >
                 <div style={{ color: "#fff", fontSize: 13, fontWeight: 700, letterSpacing: "-0.02em", whiteSpace: "nowrap" }}>
-                  Subsidy<span style={{ color: '#888888' }}>Setu</span>
+                  Suvan
                 </div>
                 <div style={{ color: "#475569", fontSize: 10, whiteSpace: "nowrap" }}>CA workspace · v1</div>
-              </div>
+              </button>
             )}
 
             {/* Toggle */}
@@ -294,7 +297,7 @@ export function AppShell() {
 
             {/* Breadcrumb */}
             <div className="hidden sm:flex items-center gap-1.5 text-[13px] whitespace-nowrap">
-              <span style={{ color: "#475569" }}>SubsidyDesk</span>
+              <span style={{ color: "#475569" }}>Suvan</span>
               <ChevronRight style={{ width: 13, height: 13, color: "#334155" }} />
               <span style={{ color: "#fff", fontWeight: 500 }}>{activeName}</span>
             </div>

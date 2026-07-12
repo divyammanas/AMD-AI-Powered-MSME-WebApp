@@ -59,12 +59,12 @@ export function LandingClient({ onSignIn }: { onSignIn: (role: "ca" | "business"
       {/* Navbar */}
       <nav className="fixed top-0 w-full z-50 bg-[#080808]/90 backdrop-blur border-b border-[#222222]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-2">
+          <a href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
             <div className="w-6 h-6 rounded-sm overflow-hidden flex items-center justify-center">
               <img src="/logo.jpg" alt="Logo" className="w-full h-full object-cover" />
             </div>
-            <span className="font-bold tracking-tight">Subsidy<span className="text-[#888888]">Setu</span></span>
-          </div>
+            <span className="font-bold tracking-tight">Suvan</span>
+          </a>
           <div className="flex gap-4 items-center">
             <button onClick={() => onSignIn(view)} className="text-sm font-medium text-[#888888] hover:text-white transition-colors">Sign In</button>
             <button onClick={() => onSignIn(view)} className="text-sm font-bold px-4 py-2 bg-white text-black rounded hover:bg-gray-200 transition-colors">Get Started</button>
@@ -296,7 +296,7 @@ export function LandingClient({ onSignIn }: { onSignIn: (role: "ca" | "business"
               />
               <FaqItem 
                 q="If the AI drafts the application, who holds the liability?"
-                a="The Chartered Accountant. SubsidySetu is a drafting and research tool, not a legal entity. You must review the citations and the draft before applying your digital signature. That's why human-in-the-loop is mandatory."
+                a="The Chartered Accountant. Suvan is a drafting and research tool, not a legal entity. You must review the citations and the draft before applying your digital signature. That's why human-in-the-loop is mandatory."
               />
               <FaqItem 
                 q="Does cheaper tier mean worse AI accuracy?"
@@ -311,12 +311,12 @@ export function LandingClient({ onSignIn }: { onSignIn: (role: "ca" | "business"
       <footer className="border-t border-[#222222] bg-[#080808] pt-12 pb-8 px-6 text-sm">
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
           <div>
-            <div className="flex items-center gap-2 mb-4">
+            <a href="/" className="flex items-center gap-2 mb-4 hover:opacity-80 transition-opacity">
               <div className="w-5 h-5 bg-white flex items-center justify-center rounded-sm">
                 <span className="text-black font-bold text-[10px]">S</span>
               </div>
-              <span className="font-bold tracking-tight">Subsidy<span className="text-[#888888]">Setu</span></span>
-            </div>
+              <span className="font-bold tracking-tight">Suvan</span>
+            </a>
             <p className="text-[#888888] max-w-xs mb-6">
               AI infrastructure for MSME compliance and government subsidies.
             </p>
@@ -333,7 +333,7 @@ export function LandingClient({ onSignIn }: { onSignIn: (role: "ca" | "business"
           </div>
         </div>
         <div className="max-w-6xl mx-auto mt-12 pt-8 border-t border-[#222222] text-[#888888] flex flex-col sm:flex-row justify-between gap-4">
-          <span>© 2026 SubsidySetu</span>
+          <span>© 2026 Suvan</span>
           <span>Not affiliated with the Govt of India.</span>
         </div>
       </footer>

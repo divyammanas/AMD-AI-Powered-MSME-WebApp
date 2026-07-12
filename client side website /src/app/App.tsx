@@ -28,7 +28,7 @@ export default function App() {
 
   // Initialize mode from localStorage on mount
   useEffect(() => {
-    const savedMode = localStorage.getItem('subsidySetuMode') as AppMode;
+    const savedMode = localStorage.getItem('suvanMode') as AppMode;
     if (savedMode && ['msme', 'client'].includes(savedMode)) {
       setModeState(savedMode);
     }
@@ -39,9 +39,9 @@ export default function App() {
     setModeState(newMode);
     // Persist login state if going to an app portal, clear it if returning to landing
     if (newMode === 'msme' || newMode === 'client') {
-      localStorage.setItem('subsidySetuMode', newMode);
+      localStorage.setItem('suvanMode', newMode);
     } else if (newMode === 'landing') {
-      localStorage.removeItem('subsidySetuMode');
+      localStorage.removeItem('suvanMode');
     }
   };
 
@@ -95,7 +95,7 @@ export default function App() {
             <div style={{ width: 28, height: 28, borderRadius: 6, background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <Cpu size={15} color="#000" />
             </div>
-            <span className="hidden sm:inline" style={{ fontFamily: "'Roboto Slab', serif", fontSize: 15, fontWeight: 600 }}>Subsidy<span style={{ color: '#aaa' }}>Setu</span> Platform</span>
+            <span className="hidden sm:inline" style={{ fontFamily: "'Roboto Slab', serif", fontSize: 15, fontWeight: 600 }}>Suvan Platform</span>
           </div>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
