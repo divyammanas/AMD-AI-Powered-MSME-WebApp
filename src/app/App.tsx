@@ -66,6 +66,11 @@ export default function App() {
     setScreen("login");
   };
 
+  const handleSignUp = (role: "ca" | "business") => {
+    setPendingRole(role);
+    setScreen("signup");
+  };
+
   const handleLogin = (role: "ca" | "business") => {
     sessionStorage.setItem("authenticated", "true");
     sessionStorage.setItem("role", role);
@@ -73,7 +78,7 @@ export default function App() {
   };
 
   if (screen === "landing") {
-    return <LandingClient onSignIn={handleSignIn} />;
+    return <LandingClient onSignIn={handleSignIn} onSignUp={handleSignUp} />;
   }
 
   if (screen === "login") {
