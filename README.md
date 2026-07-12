@@ -1,15 +1,13 @@
-# SUVAN — AI-Powered MSME Subsidy Capture Agent AND CA MANAGEMENT WEBAPP
+# SUVAN — AI-Powered MSME Suvan Capture Agent AND CA MANAGEMENT WEBAPP
 
 **Live demo:** https://amd-ai-powered-msme-web-app.vercel.app/
-
-> *"Setu"* means "bridge." SubsidySetu is the bridge between the ₹530B+ in unclaimed Indian MSME government subsidies and the businesses that already qualify for them — they just don't know it yet.
 
 ---
 
 ## Table of Contents
 
 - [The Problem](#the-problem)
-- [What SubsidySetu Does](#what-subsidysetu-does)
+- [What Suvan Does](#what-Suvansetu-does)
 - [Who It's For](#who-its-for)
 - [How It Works](#how-it-works)
 - [Feature Walkthrough](#feature-walkthrough)
@@ -29,11 +27,11 @@ India has **63–64 million MSMEs** and a **$530B+ credit/subsidy gap**. Most fi
 
 Meanwhile, India's ~100,000 registered CA (Chartered Accountant) firms — 72%+ of them single-partner practices — already hold the exact data needed to do this matching (Udyam registration, GST returns, turnover, employee count), but have no time or tooling to act on it proactively for every client.
 
-**The gap SubsidySetu closes:** nobody is turning *"your client already qualifies for ₹X"* into a filed, disbursed claim — systematically, for the CA who already serves that client.
+**The gap Suvan closes:** nobody is turning *"your client already qualifies for ₹X"* into a filed, disbursed claim — systematically, for the CA who already serves that client.
 
-## What SubsidySetu Does
+## What Suvan Does
 
-SubsidySetu is an AI agent that sits inside a small CA firm or MSME compliance consultancy. It's designed to:
+Suvan is an AI agent that sits inside a small CA firm or MSME compliance consultancy. It's designed to:
 
 1. Ingest a client's registered business data (documents or manual entry)
 2. Match that profile against a versioned, citation-backed government scheme knowledge base
@@ -191,10 +189,10 @@ VITE_OCR_SERVICE_KEY=
 
 **Live demo:** https://amd-ai-powered-msme-web-app.vercel.app/
 
-1. Land on the marketing page — introduces SubsidySetu's value prop and the 7-step process (Ingest → Match → Review → Draft → Submit → Track → Fee).
+1. Land on the marketing page — introduces SuvanSetu's value prop and the 7-step process (Ingest → Match → Review → Draft → Submit → Track → Fee).
 2. Click **Sign In** or **Sign Up** and choose a role: **CA** or **Business**.
 3. You'll land on the dashboard for that role:
-   - **CA** → the full SubsidySetu dashboard: Overview, Clients, Eligibility Matches, Applications, Status Tracker, Success Fee ledger, AI Chat, Notifications, Firm Settings.
+   - **CA** → the full SuvanSetu dashboard: Overview, Clients, Eligibility Matches, Applications, Status Tracker, Success Fee ledger, AI Chat, Notifications, Firm Settings.
    - **Business** → the MSME-facing portal: Dashboard, AI Advisor, Financial Analysis, Market Intelligence, Operations, Compliance Assistant, Supplier Management.
 
 > Auth is currently a session-based stub for demo purposes, not a production auth system.
@@ -226,5 +224,4 @@ Listed for visibility only — not built until the core product proves itself wi
 
 - UI components from [shadcn/ui](https://ui.shadcn.com/) — MIT license
 - Photos from [Unsplash](https://unsplash.com) — used under the Unsplash license
-- Prototyped and iterated using Figma Make
 - Built by [Divyam Manas](https://github.com/divyammanas)
