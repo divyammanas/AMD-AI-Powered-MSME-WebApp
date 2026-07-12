@@ -1,4 +1,4 @@
-# SubsidySetu — AI-Powered MSME Subsidy Capture Agent
+# SUVAN — AI-Powered MSME Subsidy Capture Agent AND CA MANAGEMENT WEBAPP
 
 **Live demo:** https://amd-ai-powered-msme-web-app.vercel.app/
 
